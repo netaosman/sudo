@@ -23,21 +23,21 @@ function isFullBoard(board) {
 *  Checking the options numbers through the rows,
 *  columns, and the 3x3 squares.
 */
-function options(board, i, j) {
+function cellOptions(board, i, j) {
 
-    let optionsArray = {};
+    let optionsObject = {};
 
     //Horizontal checking
     for (let y = 0; y < 9; y++) {
         if (board[i][y] != 0) {
-            optionsArray[board[i][y]] == 1;
+            optionsObject[board[i][y]] == 1;
         }
     }
 
     //Verticle checking
-    for (let x = 0; x < 9; y++) {
+    for (let x = 0; x < 9; x++) {
         if (board[x][j] != 0) {
-            optionsArray[board[i][y]] == 1;
+            optionsObject[board[i][x]] == 1;
         }
     }
 
@@ -66,21 +66,26 @@ function options(board, i, j) {
         for (let y = second; y < second + 3; y++) {
 
             if (board[x][y] != 0) {
-                optionsArray[board[x][y]] = 1;
+                optionsObject[board[x][y]] = 1;
             }
         }
     }
 
     for (let k = 1; k < 10; k++) {
 
-        if (optionsArray[k] == 0) {
-            optionsArray[k] = k;
+        if (optionsObject[k] == 0) {
+            optionsObject[k] = k;
 
         } else {
 
-            optionsArray[k] = 0;
+            optionsObject[k] = 0;
         }
     }
 
-    return optionsArray;
+    return optionsObject;
 }
+
+module.exports = {
+    isFullBoard,
+    cellOptions
+} 
