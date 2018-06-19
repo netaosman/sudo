@@ -1,4 +1,6 @@
-[
+
+var solverHnadler = require('./handlers/solverHandler');
+var board = [
     [
         0,
         0,
@@ -98,4 +100,7 @@
         0,
         0
     ]
-]
+];
+
+console.log('starting');
+solverHnadler(board);

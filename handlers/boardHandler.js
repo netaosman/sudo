@@ -8,14 +8,12 @@
 function isFullBoard(board) {
     for (let x = 0; x < 9; x++) {
         for (let y = 0; y < 9; y++) {
-
             if (board[x][y] == 0) {
                 return false;
-            } else {
-                return true;
             }
         }
     }
+    return true;
 }
 
 /** 
@@ -25,19 +23,22 @@ function isFullBoard(board) {
 */
 function cellOptions(board, i, j) {
 
-    let optionsObject = {};
+    var options = {};
+    for (let t = 1; t < 10; t++) {
+        options[t] = 0;
+    }
 
     //Horizontal checking
     for (let y = 0; y < 9; y++) {
         if (board[i][y] != 0) {
-            optionsObject[board[i][y]] == 1;
+            options[board[i][y]] = 1;
         }
     }
 
     //Verticle checking
     for (let x = 0; x < 9; x++) {
         if (board[x][j] != 0) {
-            optionsObject[board[i][x]] == 1;
+            options[board[x][j]] = 1;
         }
     }
 
@@ -66,23 +67,33 @@ function cellOptions(board, i, j) {
         for (let y = second; y < second + 3; y++) {
 
             if (board[x][y] != 0) {
-                optionsObject[board[x][y]] = 1;
+                options[board[x][y]] = 1;
             }
         }
     }
 
     for (let k = 1; k < 10; k++) {
 
-        if (optionsObject[k] == 0) {
-            optionsObject[k] = k;
-
+        if (options[k] == 0) {
+            options[k] = k;
         } else {
-
-            optionsObject[k] = 0;
+            options[k] = 0;
         }
     }
 
-    return optionsObject;
+    return options;
+}
+
+//Building an empty 2d array for the options 
+function getEmptyBoard() {
+    var newArray = [];
+    for (let i = 0; i < 9; i++) {
+        newArray[i] = [];
+        for (let j = 0; j < 9; j++) {
+            newArray[i][j] = 0;
+        }
+    }
+    return newArray;
 }
 
 module.exports = {
